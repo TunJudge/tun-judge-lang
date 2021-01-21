@@ -1,0 +1,5 @@
+FROM zenika/kotlin:1.4.20-jdk8-alpine
+
+RUN apk update && apk add g++ bash
+
+WORKDIR /opt/code
