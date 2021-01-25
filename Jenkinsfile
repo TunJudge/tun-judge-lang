@@ -14,7 +14,8 @@ final languages = [
     "Scala": [tag: "lang-scala:2.13.4-alpine", dockerfile: "Dockerfile-scala"],
     "Kotlin": [tag: "lang-kotlin:1.4.20-alpine", dockerfile: "Dockerfile-kotlin"],
     "NodeJs": [tag: "lang-node:14.15.1-alpine", dockerfile: "Dockerfile-node"],
-    "Python": [tag: "lang-python:3.6.1-alpine", dockerfile: "Dockerfile-python"]
+    "Python 2": [tag: "lang-python:2.7.18-alpine", dockerfile: "Dockerfile-python2"],
+    "Python 3": [tag: "lang-python:3.6.1-alpine", dockerfile: "Dockerfile-python"]
 ]
 
 node("main") {
