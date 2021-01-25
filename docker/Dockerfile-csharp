@@ -1,0 +1,5 @@
+FROM mono:6.12.0.107-slim
+
+RUN apt update && apt install -y g++
+
+WORKDIR /opt/code
