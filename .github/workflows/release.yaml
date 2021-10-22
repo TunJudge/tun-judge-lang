@@ -20,7 +20,7 @@ jobs:
 
           - name: C# 6.12.0
             imageName: csharp
-            tag: 6.12.0.107
+            tag: 6.12.0
 
           - name: Java 8
             imageName: java
@@ -32,7 +32,7 @@ jobs:
 
           - name: Scala 2.13.4
             imageName: scala
-            tag: 1.4.20
+            tag: 2.13.4
 
           - name: Node 14.18.0
             imageName: node
