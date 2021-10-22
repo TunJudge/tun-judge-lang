@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         lang:
           - name: C++ 7.3.0
@@ -26,6 +27,9 @@ jobs:
           - name: Kotlin 1.4.20
             context: kotlin/1.4.20
             tag: kotlin:1.4.20
+          - name: Node 14.18.0
+            context: node/14.18.0
+            tag: node:14.18.0
 
     steps:
       - name: Check out code
@@ -40,10 +44,7 @@ jobs:
 
       - name: Build and push ${{ matrix.lang.name }} Docker image
         uses: docker/build-push-action@v2
-        if: github.event.head_commit.message == 'Release ${{ matrix.lang.name }}'
-        env: 
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          TEST: 'Release ${{ matrix.lang.name }}'
+        if: ${{ github.event.head_commit.message == 'Release ${{ matrix.lang.name }}' }}
         with:
           context: ${{ matrix.lang.context }}
           tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
