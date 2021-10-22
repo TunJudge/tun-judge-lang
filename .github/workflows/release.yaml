@@ -49,8 +49,8 @@ jobs:
       #     tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
       #     push: true
       - name: Build and push ${{ matrix.lang.name }} Docker image
-        if: github.event.head_commit.message == 'Release ${{ matrix.lang.name }}'
+        if: ${{ github.event.head_commit.message }} == 'Release ${{ matrix.lang.name }}'
         run: |
           echo ${{ github.event.head_commit.message }}
-          echo ${{ 'Release ${{ matrix.lang.name }}' }}
+          echo 'Release ${{ matrix.lang.name }}'
           echo ${{ github.event.head_commit.message == 'Release ${{ matrix.lang.name }}' }}
