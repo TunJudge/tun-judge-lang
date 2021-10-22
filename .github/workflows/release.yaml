@@ -1,7 +1,6 @@
 name: Release
 
-on:
-  push
+on: push
 
 env:
   REGISTRY: ghcr.io
@@ -42,10 +41,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # - name: Build and push ${{ matrix.lang.name }} Docker image
+      #   uses: docker/build-push-action@v2
+      #   if: github.event.head_commit.message == 'Release ${{ matrix.lang.name }}'
+      #   with:
+      #     context: ${{ matrix.lang.context }}
+      #     tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
+      #     push: true
       - name: Build and push ${{ matrix.lang.name }} Docker image
-        uses: docker/build-push-action@v2
-        if: (github.event.head_commit.message == 'Release ${{ matrix.lang.name }}')
-        with:
-          context: ${{ matrix.lang.context }}
-          tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
-          push: true
+        if: github.event.head_commit.message == 'Release ${{ matrix.lang.name }}'
+        run: |
+          echo ${{ github.event.head_commit.message == 'Release ${{ matrix.lang.name }}' }}
