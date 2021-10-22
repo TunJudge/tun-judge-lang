@@ -18,8 +18,8 @@ jobs:
             context: cpp/7.3.0
             tag: cpp:7.3.0
           - name: C# 6.12.0
-            context: c#/6.12.0.107
-            tag: c#:6.12.0.107
+            context: csharp/6.12.0.107
+            tag: csharp:6.12.0.107
           - name: Java 8
             context: java/8
             tag: java:8
@@ -41,6 +41,9 @@ jobs:
       - name: Build and push ${{ matrix.lang.name }} Docker image
         uses: docker/build-push-action@v2
         if: github.event.head_commit.message == 'Release ${{ matrix.lang.name }}'
+        env: 
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          TEST: 'Release ${{ matrix.lang.name }}'
         with:
           context: ${{ matrix.lang.context }}
           tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
