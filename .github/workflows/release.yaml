@@ -44,7 +44,7 @@ jobs:
 
       - name: Build and push ${{ matrix.lang.name }} Docker image
         uses: docker/build-push-action@v2
-        if: ${{ github.event.head_commit.message == 'Release ${{ matrix.lang.name }}' }}
+        if: (github.event.head_commit.message == 'Release ${{ matrix.lang.name }}')
         with:
           context: ${{ matrix.lang.context }}
           tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
