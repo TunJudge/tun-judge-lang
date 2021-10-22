@@ -14,31 +14,25 @@ jobs:
     strategy:
       matrix:
         lang:
-          - name: C++
+          - name: C++ 7.3.0
             context: cpp/7.3.0
             tag: cpp:7.3.0
-          - name: C#
+          - name: C# 6.12.0
             context: c#/6.12.0.107
             tag: cpp:6.12.0.107
-          - name: Java
+          - name: Java 8
             context: java/8
             tag: java:8
+          - name: Kotlin 1.4.20
+            context: kotlin/1.4.20
+            tag: kotlin:1.4.20
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v2.1
-        with:
-          files: '${{ matrix.lang.context }}/Dockerfile'
 
       - name: Log in to the Container registry
         uses: docker/login-action@v1
-        if: steps.cchanged-files.outputs.any_changed == 'true'
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -46,7 +40,6 @@ jobs:
 
       - name: Build and push ${{ matrix.lang.name }} Docker image
         uses: docker/build-push-action@v2
-        if: steps.cchanged-files.outputs.any_changed == 'true'
         with:
           context: ${{ matrix.lang.context }}
           tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.tag }}
