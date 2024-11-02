@@ -1,4 +1,4 @@
-FROM mono:6.12.0.107-slim
+FROM mono:6.12.0.182-slim
 
 RUN apt update && apt install -y mono-complete g++ && rm -rf /var/lib/apt/lists/*
 
