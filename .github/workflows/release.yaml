@@ -34,6 +34,10 @@ jobs:
             imageName: java
             tag: 8
 
+          - name: Java 24
+            imageName: java
+            tag: 24
+
           - name: Kotlin 1.4.20
             imageName: kotlin
             tag: 1.4.20
