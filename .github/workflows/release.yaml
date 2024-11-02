@@ -14,9 +14,17 @@ jobs:
       fail-fast: false
       matrix:
         lang:
-          - name: C++ 7.3.0
+          - name: C++ 7.5.0
             imageName: cpp
-            tag: 7.3.0
+            tag: 7.5.0
+
+          - name: C++ 13.3.0
+            imageName: cpp
+            tag: 13.3.0
+
+          - name: C++ 14.2.0
+            imageName: cpp
+            tag: 14.2.0
 
           - name: C# 6.12.0
             imageName: csharp
@@ -45,14 +53,14 @@ jobs:
           - name: Python 3.7.10
             imageName: python
             tag: 3.7.10
-   
+
     steps:
       - name: Check out code
         uses: actions/checkout@v2
 
       - name: Log in to the Container registry
         uses: docker/login-action@v1
-        if: github.event.head_commit.message == matrix.lang.name
+        if: contains(github.event.head_commit.message, matrix.lang.name)
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -60,7 +68,7 @@ jobs:
 
       - name: Build and push ${{ matrix.lang.name }} Docker image
         uses: docker/build-push-action@v2
-        if: github.event.head_commit.message == matrix.lang.name
+        if: contains(github.event.head_commit.message, matrix.lang.name)
         with:
           context: ${{ matrix.lang.imageName }}/${{ matrix.lang.tag }}
           tags: ${{ env.REGISTRY }}/${{ env.ORG_NAME }}/lang/${{ matrix.lang.imageName }}:${{ matrix.lang.tag }}

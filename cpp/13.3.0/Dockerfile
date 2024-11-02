@@ -1,3 +1,3 @@
-FROM gcc:7.3.0
+FROM gcc:13.3.0
 
 WORKDIR /opt/code
