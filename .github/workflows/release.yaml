@@ -54,9 +54,9 @@ jobs:
             imageName: python
             tag: 2.7.18
 
-          - name: Python 3.7.10
+          - name: Python 3.8.10
             imageName: python
-            tag: 3.7.10
+            tag: 3.8.10
 
     steps:
       - name: Check out code

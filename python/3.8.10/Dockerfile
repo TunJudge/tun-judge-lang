@@ -1,4 +1,4 @@
-FROM python:3.7.10-slim
+FROM python:3.8.10-slim
 
 RUN apt update && apt install -y --no-install-recommends bzip2 g++ curl
 
