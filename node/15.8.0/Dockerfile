@@ -1,4 +1,4 @@
-FROM node:14.18.0-alpine
+FROM node:15.8.0-alpine
 
 RUN apk update && apk add --no-cache g++ bash
 
