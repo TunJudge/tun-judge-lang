@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ENV SCALA_VERSION=2.13.4 \
+ENV SCALA_VERSION=2.13.15 \
     SCALA_HOME=/usr/share/scala
 
 RUN apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
