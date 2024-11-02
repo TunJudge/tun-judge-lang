@@ -1,5 +1,5 @@
 FROM openjdk:24-jdk-slim
 
-RUN apk update && apk add --no-cache g++ bash
+RUN apt update && apt install -y g++ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/code
